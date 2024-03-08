@@ -64,14 +64,14 @@ const apikey_show = ref(import.meta.env.VUE_APP_API_KEY);
 nav {
 	display: flex;
 	justify-content: space-around;
-	background-color: #bdd2b6;
+	background-color: #f8ede3;
 	padding: 1rem;
 }
 
 /* Style pour chaque élément de la navbar */
 .nav-item {
 	text-decoration: none;
-	color: #4245428a;
+	color: #1414148a;
 	padding: 0.5rem 1rem;
 	border-radius: 5px;
 	transition: background-color 0.3s ease;

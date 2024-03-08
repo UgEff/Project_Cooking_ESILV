@@ -1,22 +1,29 @@
 <template>
-    <div class="bg-gray-100 min-h-screen flex flex-col">
-      
-  
+    <div class="bg-secondary min-h-screen flex flex-col">
+      <header class="bg-primary">
+        <div class="container mx-auto  flex justify-center items-center h-64 bg-cover" style="background-image: url('../src/assets/pasta.jpg');">
+          <div class="text-secondary text-center">
+            <h1 class="text-8xl font-bold mb-4 mt-4">Wok and Roll</h1>
+            <p class="text-lg">Postez vos délicieuses recettes !</p>
+          </div>
+        </div>
+      </header>
       <main class="container mx-auto px-6 py-8 flex-grow">
-        <h1 class="text-3xl font-bold mb-4 text-primary text-center">Top 5 des recettes pendant le Ramadan</h1>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
           <div v-for="recipe in recipes" :key="recipe.id" class="bg-white rounded-lg shadow-md overflow-hidden text-primary">
-            <img :src="recipe.image" alt="Recipe Image" class="w-full h-40 object-cover">
+            <div class="relative h-64 overflow-hidden">
+              <img :src="recipe.image" :alt="recipe.title" class="absolute h-full w-full object-cover">
+            </div>
             <div class="p-4">
               <h3 class="text-xl font-bold mb-2">{{ recipe.title }}</h3>
-              <a href="#" class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-2 px-4 rounded">View Recipe</a>
+              <a href="#" class="inline-block bg-primary hover:bg-secondary text-white font-bold py-2 px-4 rounded">Cliquez ici</a>
             </div>
           </div>
         </div>
       </main>
   
       <footer class="bg-gray-800 py-4 text-center text-white">
-        &copy; RecipeSite {{ currentYear }}
+        &copy; Wok and Roll {{ currentYear }}
       </footer>
     </div>
   </template>
@@ -30,17 +37,32 @@
           {
             id: 1,
             title: 'Pâtes carbonara',
-            image: 'https://via.placeholder.com/400x300'
+            image: '../src/assets/pasta.jpg'
           },
           {
             id: 2,
             title: 'Saumon grillé',
-            image: 'https://via.placeholder.com/400x300'
+            image: '../src/assets/salmon.jpg'
           },
           {
             id: 3,
-            title: 'Gâteau au hocolat',
-            image: 'https://via.placeholder.com/400x300'
+            title: 'Gâteau au chocolat',
+            image: '../src/assets/chocolate.jpg'
+          },
+          {
+            id: 1,
+            title: 'Couscous',
+            image: '../src/assets/couscous.jpg'
+          },
+          {
+            id: 2,
+            title: 'Daurade grillé',
+            image: '../src/assets/dorada.jpg'
+          },
+          {
+            id: 3,
+            title: 'Hot dog',
+            image: '../src/assets/hotdog.jpg'
           }
         ]
       }
