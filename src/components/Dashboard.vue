@@ -1,7 +1,21 @@
 <template>
     <div>
         <h1>Dashboard</h1>
-        <p>Cette page represente le dashboard</p>
-        <img src="../assets/dash.jpg" alt="dashboard" />
+        <p>Voici le dashboard </p>
     </div>
+
 </template>
+
+
+<script>
+    export default {
+    name: 'Dashboard',
+}
+</script>
+
+<style scoped>
+    .about {
+    text-align: center;
+    margin-top: 20px;
+}
+</style>

@@ -17,12 +17,13 @@ const routes = [
   { path: '/contact', component: Contact },
   { path: '/login', component: Login },
   { path: '/register', component: Registration },
+  { path: '/dashboard', component: Dashboard },
 
-  { path: '/dashboard', 
-  component: () => import('../components/Dashboard.vue'),
-      meta:{
-        requiresAuth: true
-      }}, 
+  // { path: '/dashboard', 
+  // component: () => import('../components/Dashboard.vue'),
+  //     meta:{
+  //       requiresAuth: true
+  //     }}, 
 ];
 
 const router = createRouter({

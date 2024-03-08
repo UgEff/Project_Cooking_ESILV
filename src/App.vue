@@ -59,26 +59,28 @@ const apikey_show = ref(import.meta.env.VUE_APP_API_KEY);
 
 
 <style>
+
 /* Style global pour la navbar */
 nav {
 	display: flex;
 	justify-content: space-around;
-	background-color: #34495e;
+	background-color: #bdd2b6;
 	padding: 1rem;
 }
 
 /* Style pour chaque élément de la navbar */
 .nav-item {
 	text-decoration: none;
-	color: #ecf0f1;
+	color: #4245428a;
 	padding: 0.5rem 1rem;
 	border-radius: 5px;
 	transition: background-color 0.3s ease;
+	font-weight: bold;
 }
 
 /* Changement du style au survol */
 .nav-item:hover {
-	background-color: #f9001d;
+	background-color: #f8ede3;
 }
 </style>
 

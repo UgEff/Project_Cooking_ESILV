@@ -2,6 +2,7 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
+import './index.css'
 
 //Firebase
 // Import the functions you need from the SDKs you need
@@ -25,3 +26,5 @@ initializeApp(firebaseConfig);
 
 // Créez une instance de l'application Vue et utilisez le routeur
 createApp(App).use(router).mount('#app');
+
+

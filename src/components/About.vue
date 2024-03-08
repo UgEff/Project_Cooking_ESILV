@@ -1,7 +1,7 @@
 <template>
     <div>
-        <h1>À Propos</h1>
-        <p>Cette page explique ce que fait notre application.</p>
+        <h1 className="text-red-500">À Propos</h1>
+        <p className="text-blue-400">Cette page explique ce que fait notre application.</p>
     </div>
 </template>
 <script>
