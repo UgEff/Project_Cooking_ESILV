@@ -1,59 +1,75 @@
 <template>
-    <div class="add-recipe-container">
-      <h2>Ajouter une Recette</h2>
-      <form @submit.prevent="addRecipe">
-        <div class="form-group">
-          <label for="title">Titre de la recette</label>
-          <input type="text" id="title" v-model="recipe.title" required>
-        </div>
-        <div class="form-group">
-          <label for="description">Description</label>
-          <textarea id="description" v-model="recipe.description" required></textarea>
-        </div>
-        <!-- Ajoutez d'autres champs selon le besoin -->
-        <button type="submit">Ajouter la Recette</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  export default {
-    name: 'AddRecipe',
-    data() {
-      return {
-        recipe: {
-          title: '',
-          description: '',
-          // Autres champs selon besoin
-        }
-      };
+  <div class="add-recipe-container">
+    <h2>Ajouter une Recette</h2>
+    <img v-if="imageUrl" :src="imageUrl" alt="image de la recette" width="300">
+    <input type="file" ref="myfile" @change="upload">
+    <button @click="upload">Upload</button>
+    <p>url image: {{ imageUrl }}</p>
+    
+    <!-- ajouter un formulaire pour ajouter une recette avec un titre , ingredients et instructions -->
+    <!-- pour chaque ingrédient, ajouter un input pour le nom et un input pour la quantité -->
+    <!-- pour chaque instruction, ajouter un textarea -->
+    <form @submit.prevent="submitRecipe">
+      <div v-for="(ingredient, index) in ingredients" :key="index" class="ingredient-group">
+        <input type="text" v-model="ingredient.name" placeholder="nom de l'ingrédient">
+        <input type="text" v-model="ingredient.quantity" placeholder="quantité">
+        <select v-model="ingredient.unit">
+          <option value="g">g</option>
+          <option value="kg">kg</option>
+          <option value="ml">ml</option>
+          <option value="cl">cl</option>
+          <option value="l">l</option>
+          <option value="cuillère à soupe">cuillère à soupe</option>
+          <option value="cuillère à café">cuillère à café</option>
+          <option value="pincée">pincée</option>
+        </select>
+        <button type="button" @click="removeIngredient(index)">Supprimer</button>
+      </div>
+      <button type="button" @click="addIngredient">Ajouter un ingrédient</button>
+      <button type="submit">Ajouter la recette</button>
+    </form>
+  </div>
+</template>
+
+<script>
+import { storage } from '../main.js';
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
+export default {
+  data() {
+    return {
+      imageUrl: '',
+      // ajouter un tableau pour stocker les ingrédients
+      ingredients: [{name: '', quantity: '', unit: ''}],
+    };
+  },
+  methods: {
+    upload() {
+      // si aucun fichier n'est sélectionné, on ne fait rien
+      if (!this.$refs.myfile.files.length) return;
+      // récupère le fichier
+      const file = this.$refs.myfile.files[0];
+      // crée une référence au fichier
+      const uploadRef = ref(storage, 'uploads/' + file.name);
+      // upload le fichier
+      uploadBytes(uploadRef, file).then((snapshot) => {
+        // récupère l'url de téléchargement
+        getDownloadURL(snapshot.ref).then((downloadURL) => {
+          this.imageUrl = downloadURL;
+        });
+      });
     },
-    methods: {
-      addRecipe() {
-        console.log("Recette à ajouter :", this.recipe);
-        // Logique pour ajouter la recette via une API ou autre méthode
-      }
+
+    // ajouter une méthode pour ajouter une recette
+    addIngredient() {
+      this.ingredients.push({ name: '', quantity: '' , unit: ''});
+    },
+    removeIngredient(index) {
+      this.ingredients.splice(index, 1);
+    },
+    submitRecipe(){
+      console.log(this.ingredients);
     }
   }
-  </script>
-  
-  <style scoped>
-  .add-recipe-container {
-    /* Styles du formulaire */
-  }
-  .form-group {
-    margin-bottom: 1rem;
-  }
-  .form-group label {
-    display: block;
-  }
-  .form-group input, .form-group textarea {
-    width: 100%;
-    padding: 0.5rem;
-    margin-top: 0.5rem;
-  }
-  button[type="submit"] {
-    /* Style du bouton */
-  }
-  </style>
-  
+};
+</script>

@@ -18,8 +18,11 @@
 
   const login = () => {
     const auth = getAuth();
+    // signInWithEmailAndPassword permet de se connecter avec un email et un mot de passe
     signInWithEmailAndPassword(auth,email.value,password.value)
+    // .then() permet de récupérer les données 
       .then((data)=>{
+        // On affiche les données dans la console
         console.log("successfully signed in");
         console.log(auth.currentUser)
         router.push({path:'/Dashboard'});

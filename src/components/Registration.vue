@@ -6,6 +6,17 @@
 </template>
 
 <script setup>
+/* Rajouter condition:
+    mot de passe doit contenir:
+              - Une majuscule
+              - longueur > 8
+              - un chiffre
+              - un caractère spécial
+    Pour le user:
+        verifier si l'email est valide
+        verifier si le user existe deja
+        Autoriser qu'une seule inscription par email
+*/ 
   import {ref} from "vue";
   import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";
   import { useRouter } from "vue-router";
