@@ -16,6 +16,12 @@
         verifier si l'email est valide
         verifier si le user existe deja
         Autoriser qu'une seule inscription par email
+
+    IMPORTANT 
+    - Ajouter un message d'erreur 
+    - Ajouter un message de succès
+    - Autoriser qu'une soumission par email
+
 */ 
   import {ref} from "vue";
   import {getAuth, createUserWithEmailAndPassword} from "firebase/auth";

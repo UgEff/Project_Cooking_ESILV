@@ -9,6 +9,7 @@
     <!-- ajouter un formulaire pour ajouter une recette avec un titre , ingredients et instructions -->
     <!-- pour chaque ingrédient, ajouter un input pour le nom et un input pour la quantité -->
     <!-- pour chaque instruction, ajouter un textarea -->
+    <input type="text" placeholder="Titre de la recette">
     <form @submit.prevent="submitRecipe">
       <div v-for="(ingredient, index) in ingredients" :key="index" class="ingredient-group">
         <input type="text" v-model="ingredient.name" placeholder="nom de l'ingrédient">
@@ -26,6 +27,7 @@
         <button type="button" @click="removeIngredient(index)">Supprimer</button>
       </div>
       <button type="button" @click="addIngredient">Ajouter un ingrédient</button>
+      <textarea type="text" v-model="description" placeholder="Decriver les etapes de la recette"></textarea>
       <button type="submit">Ajouter la recette</button>
     </form>
   </div>
@@ -41,6 +43,7 @@ export default {
       imageUrl: '',
       // ajouter un tableau pour stocker les ingrédients
       ingredients: [{name: '', quantity: '', unit: ''}],
+      description: '',
     };
   },
   methods: {
@@ -68,7 +71,7 @@ export default {
       this.ingredients.splice(index, 1);
     },
     submitRecipe(){
-      console.log(this.ingredients);
+      console.log(this.ingredients , this.description ,);
     }
   }
 };

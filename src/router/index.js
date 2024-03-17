@@ -18,7 +18,12 @@ const routes = [
   { path: '/contact', component: Contact },
   { path: '/login', component: Login },
   { path: '/register', component: Registration },
-  { path: '/add-recipe', component: AddRecipe},
+
+  { path: '/add-recipe', 
+    component : () => import('../components/AddRecipe.vue'),
+    meta:{
+      requiresAuth: true
+    }},
       
 
   { path: '/dashboard', 
