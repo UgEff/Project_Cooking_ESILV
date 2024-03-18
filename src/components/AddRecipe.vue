@@ -1,4 +1,5 @@
 <template>
+  <h1>Ajouter une recette</h1>
   <div class="add-recipe-container">
     <h2>Ajouter une Recette</h2>
     <img v-if="imageUrl" :src="imageUrl" alt="image de la recette" width="300">
