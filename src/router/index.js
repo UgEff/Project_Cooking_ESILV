@@ -13,7 +13,7 @@ import Dashboard from '../components/Dashboard.vue';
 const routes = [
   { path: '/', component: Home },
   { path: '/about', component: About },
-  { path: '/recipes', component: RecipeList },
+  { path: '/recipes', name: 'RecipeList', component: RecipeList },
   { path: '/contact', component: Contact },
   { path: '/login', component: Login },
   { path: '/register', component: Registration },
@@ -36,6 +36,7 @@ router.beforeEach((to, from, next) => {
     if(getAuth().currentUser){
       next();
     }else{
+      // eslint-disable-next-line no-alert
       alert('You must be logged in to see this page');
       next('/login');
     }

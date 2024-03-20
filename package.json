@@ -11,6 +11,7 @@
   "dependencies": {
     "firebase": "^10.8.1",
     "vue": "^3.4.15",
+    "vue-js-modal": "^2.0.1",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {

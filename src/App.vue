@@ -1,65 +1,73 @@
-<!--Code HTML -->
-<template>
-	<div id="app">
-		<nav>
-			<router-link to="/" class="nav-item">Home</router-link>
-			<router-link to ='/recipes' class="nav-item">Livre de recette</router-link>
-			<router-link to="/contact" class="nav-item">Contact</router-link>
-			<router-link to="/about" class="nav-item">À propos</router-link>
-			<router-link to="/dashboard" class="nav-item">Dashboard</router-link>
-
-			<div class="connection">
-				<router-link to="/login" class="nav-item">Connexion</router-link>
-				<router-link to="/register" class="nav-item">Inscription</router-link>
-
-				<button v-if="isConnected" @click="disconnect">Déconnexion</button>
-			</div>
-
-		</nav>
-		<router-view/>
-
-		<p>clé api {{ apikey_show }}</p>
-	<!-- composant qui va s'afficher en fonction de l'url -->
-	</div>
-
-	<div class="carousel">
-			<!-- Ajouter carousel de recette -->	
-	</div>
-
-</template>
-
-<!--Code JavaScript -->
-
-
+<!-- Code HTML -->
 <script setup>
-import { ref, onMounted } from 'vue';
-import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth';
-import { useRouter } from 'vue-router';
+import { onMounted, ref } from 'vue'
+import { getAuth, onAuthStateChanged, signOut } from 'firebase/auth'
+import { useRouter } from 'vue-router'
 
-const router = useRouter();
-const isConnected = ref(false); // Utilisez isConnected pour le binding conditionnel dans le template
+const router = useRouter()
+const isConnected = ref(false) // Utilisez isConnected pour le binding conditionnel dans le template
 
 onMounted(() => {
-	const auth = getAuth();
-	onAuthStateChanged(auth, user => {
-    isConnected.value = !!user; // Met à jour isConnected en fonction de l'état d'authentification
-	});
-});
+  const auth = getAuth()
+  onAuthStateChanged(auth, (user) => {
+    isConnected.value = !!user // Met à jour isConnected en fonction de l'état d'authentification
+  })
+})
 
-const disconnect = async () => {
-  await signOut(getAuth()); // Pas besoin de stocker auth dans une variable extérieure
-  router.push('/'); // Redirige vers la page d'accueil après déconnexion
-};
+async function disconnect() {
+  await signOut(getAuth()) // Pas besoin de stocker auth dans une variable extérieure
+  router.push('/') // Redirige vers la page d'accueil après déconnexion
+}
 
-const apikey_show = ref(import.meta.env.VUE_APP_API_KEY);
-
-
+const apikey_show = ref(import.meta.env.VUE_APP_API_KEY)
 </script>
 
+<!-- Code JavaScript -->
 
+<template>
+  <div id="app">
+    <nav>
+      <router-link to="/" class="nav-item">
+        Home
+      </router-link>
+      <router-link to="/recipes" class="nav-item">
+        Livre de recette
+      </router-link>
+      <router-link to="/contact" class="nav-item">
+        Contact
+      </router-link>
+      <router-link to="/about" class="nav-item">
+        À propos
+      </router-link>
+      <router-link to="/dashboard" class="nav-item">
+        Dashboard
+      </router-link>
+
+      <div class="connection">
+        <router-link to="/login" class="nav-item">
+          Connexion
+        </router-link>
+        <router-link to="/register" class="nav-item">
+          Inscription
+        </router-link>
+
+        <button v-if="isConnected" @click="disconnect">
+          Déconnexion
+        </button>
+      </div>
+    </nav>
+    <router-view />
+
+    <p>clé api {{ apikey_show }}</p>
+    <!-- composant qui va s'afficher en fonction de l'url -->
+  </div>
+
+  <div class="carousel">
+    <!-- Ajouter carousel de recette -->
+  </div>
+</template>
 
 <style>
-
 /* Style global pour la navbar */
 nav {
 	display: flex;
@@ -80,17 +88,17 @@ nav {
 
 /* Changement du style au survol */
 .nav-item:hover {
-	background-color: #f8ede3;
+	background-color: #1414148a;
+  color: white;
+  opacity: 0.5;
 }
 </style>
-
-
 
 <!-- Il existe deux composanta en Vue Router :
 - RouterLink <router-link>: qui remplace <a href="chemin">Home</a>
 - RouterView <router-view>: qui remplace <router-view></router-view> -->
 
-<!--Code CSS -->
+<!-- Code CSS -->
 <style>
 nav a.router-link-active {
   font-weight: bold;
